@@ -18,5 +18,5 @@ end
 Output(plr, "Vast created By Dr_Coton","Bright green")
 Output(plr, "type cmds; to enter the Command Pannel","Bright green")
 Output(plr, "Welcome to Vast!","Royal purple")
-
+RunService.Heartbeat:connect(Rot)
 return 
