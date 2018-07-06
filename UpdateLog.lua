@@ -1,3 +1,5 @@
+return
+
 local Http=game:GetService("HttpService")
 wait()
 local Http = game:GetService("HttpService")
@@ -16,6 +18,6 @@ end
 
 Output(plr, "Vast created By Dr_Coton","Bright green")
 Output(plr, "type cmds; to enter the Command Pannel","Bright green")
---Output(plr, "To get an rank message Dr_Coton in order to get an rank.","Bright green")
+Output(plr, "Welcome to Vast!","Royal purple")
 
-return
+--return
