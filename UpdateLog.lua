@@ -18,4 +18,4 @@ Output(plr, "Vast created By Dr_Coton","Bright green")
 Output(plr, "type cmds; to enter the Command Pannel","Bright green")
 --Output(plr, "To get an rank message Dr_Coton in order to get an rank.","Bright green")
 
-return nil
+return
