@@ -1,0 +1,63 @@
+local ESP = 1
+plrs = game:service'Players'
+lp = plrs.LocalPlayer
+char = lp.Character
+local GetAllPlayerParts
+
+function GetFunc()
+  for i, v in pairs(getgc(true)) do
+    if type(v) == "function" and debug.getinfo(v).name == "getallparts" then
+      local a = v()
+      if type(a) == "table" then
+        GetAllPlayerParts = v --yes using game function for ESP cuz why not?
+      end
+    end
+  end
+end
+
+
+local function DrawGUI(R,G,B,pos,name)
+  if not pos:FindFirstChild(name) then
+    local box = Instance.new("BoxHandleAdornment", pos)
+    box.AlwaysOnTop = true
+    box.Adornee = pos
+    box.Size = pos.Size
+    box.Color3 = Color3.fromRGB(R,G,B)
+    box.Name = name
+    box.ZIndex = 5
+  end
+end
+
+spawn(GetFunc)
+
+
+  function StartESP()
+    while wait(1) do
+      --yeah this is some cringe stuff right here but im too lazy to remake
+      if ESP == 0 then
+        for i,v in pairs(GetAllPlayerParts()) do
+          if tostring(v) == "Head" or tostring(v) == "Torso" or tostring(v) == "HumanoidRootPart" or tostring(v) == "Left Leg"  or tostring(v) == "Right Leg"  or tostring(v) == "Right Arm" or tostring(v) == "Left Arm" then
+            if v:FindFirstChild("Friendly") then
+              v.Friendly:Destroy()
+            end
+            if v:FindFirstChild("Enemy") then
+              v.Enemy:Destroy()
+            end
+          end
+        end
+        break
+      end
+      --DrawGUI
+      for a,b in pairs(GetAllPlayerParts()) do
+        if tostring(b) == "Head" or tostring(b) == "Torso" or tostring(b) == "HumanoidRootPart" or tostring(b) == "Left Leg"  or tostring(b) == "Right Leg"  or tostring(b) == "Right Arm" or tostring(b) == "Left Arm" then
+          if tostring(game.Players.LocalPlayer.Team) ~= tostring(b.Parent.Parent) then
+            DrawGUI(255,0,0,b,"Friendly")
+          else
+            DrawGUI(13,255,48,b,"Enemy")
+          end
+        end
+      end
+    end
+  end
+
+spawn(StartESP)
